@@ -50,8 +50,8 @@ jobs:
         id: create_pr
         uses: peter-evans/create-pull-request@v5
         with:
-          branch: ${{ env.auto_update_branch }}
-          base: main
+          branch: main
+          base: ${{ env.auto_update_branch }}
           title: "Release ${{ env.version }}"
           body: |
             This PR merges the changes from `${{ env.auto_update_branch }}` to `main` and includes:
