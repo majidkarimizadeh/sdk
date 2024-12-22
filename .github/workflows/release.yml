@@ -32,8 +32,6 @@ jobs:
         run: |
           git config user.name "majidkarimizadeh"
           git config user.email "m.karimizadeh@global.leaseweb.com"
-<<<<<<< HEAD
-=======
 
           # Define the new branch name
           NEW_BRANCH="feature/auto-updates-$(date +%Y%m%d%H%M%S)"
@@ -41,7 +39,6 @@ jobs:
           # Create a new branch
           git checkout -b "$NEW_BRANCH"
 
->>>>>>> main
           if [ "$(git status --porcelain)" ]; then
             # Stage, commit, and push changes
             git add .
