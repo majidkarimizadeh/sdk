@@ -53,6 +53,7 @@ jobs:
           branch: main
           base: ${{ env.auto_update_branch }}
           title: "Release ${{ env.version }}"
+          delete-branch: true
           body: |
             This PR merges the changes from `${{ env.auto_update_branch }}` to `main` and includes:
             - Code cleanup with `go mod tidy`
