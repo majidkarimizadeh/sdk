@@ -14,10 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Run go mod tidy
-      - name: Run go mod tidy
-        run: go mod tidy
-
       # Set the version (customize this logic as needed)
       - name: Set Version
         id: set_version
@@ -30,8 +26,9 @@ jobs:
       # Commit changes to go.mod if modified
       - name: Commit and Push Changes
         run: |
-          git config user.name "majidkarimizadeh"
-          git config user.email "m.karimizadeh@global.leaseweb.com"
+          go mod tidy
+          git config --global user.name "majidkarimizadeh"
+          git config --global user.email "m.karimizadeh@global.leaseweb.com"
 
           # Define the new branch name
           NEW_BRANCH="feature/auto-updates-$(date +%Y%m%d%H%M%S)"
@@ -58,7 +55,7 @@ jobs:
           base: main
           title: "Release ${{ env.version }}"
           body: |
-            This PR merges the changes from `dev` to `main` and includes:
+            This PR merges the changes from `${{ env.auto_update_branch }}` to `main` and includes:
             - Code cleanup with `go mod tidy`
             - Version set to `${{ env.version }}`
           labels: automerge
