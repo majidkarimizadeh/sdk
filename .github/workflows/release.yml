@@ -14,6 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Run go mod tidy
+      - name: Run go mod tidy
+        run: go mod tidy
+
       # Set the version (customize this logic as needed)
       - name: Set Version
         id: set_version
@@ -26,7 +30,6 @@ jobs:
       # Commit changes to go.mod if modified
       - name: Commit and Push Changes
         run: |
-          go mod tidy
           git config --global user.name "majidkarimizadeh"
           git config --global user.email "m.karimizadeh@global.leaseweb.com"
 
