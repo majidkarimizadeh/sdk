@@ -44,11 +44,9 @@ jobs:
             # Stage, commit, and push changes
             git status
             git add .
-            git commit -m "Automated update"
+            git commit -m "automated update"
             git push origin "$NEW_BRANCH"
           fi
-        env:
-          GITHUB_ENV: $GITHUB_ENV
 
       # Create a Pull Request to the main branch
       - name: Create Pull Request
