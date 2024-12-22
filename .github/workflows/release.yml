@@ -24,8 +24,6 @@ jobs:
         run: |
           VERSION="0.0.1-$(git rev-parse --short HEAD)"
           echo "version=$VERSION" >> $GITHUB_ENV
-        env:
-          GITHUB_ENV: $GITHUB_ENV
 
       # Commit changes to go.mod if modified
       - name: Commit and Push Changes
@@ -47,19 +45,19 @@ jobs:
             git push origin "$NEW_BRANCH"
           fi
 
-      # # Create a Pull Request to the main branch
-      # - name: Create Pull Request
-      #   id: create_pr
-      #   uses: peter-evans/create-pull-request@v5
-      #   with:
-      #     branch: ${{ env.auto_update_branch }}
-      #     base: main
-      #     title: "Release ${{ env.version }}"
-      #     body: |
-      #       This PR merges the changes from `${{ env.auto_update_branch }}` to `main` and includes:
-      #       - Code cleanup with `go mod tidy`
-      #       - Version set to `${{ env.version }}`
-      #     labels: automerge
+      # Create a Pull Request to the main branch
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: ${{ env.auto_update_branch }}
+          base: main
+          title: "Release ${{ env.version }}"
+          body: |
+            This PR merges the changes from `${{ env.auto_update_branch }}` to `main` and includes:
+            - Code cleanup with `go mod tidy`
+            - Version set to `${{ env.version }}`
+          labels: automerge
 
   # auto-release:
   #   name: Auto Release
