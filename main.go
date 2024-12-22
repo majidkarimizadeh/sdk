@@ -20,6 +20,6 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AbuseAPI.GetReportList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetReportList`: GetReportListResult
+	// response from `GetReportList`: GetReportListResult HI
 	fmt.Fprintf(os.Stdout, "Response from `AbuseAPI.GetReportList`: %v\n", resp)
 }
