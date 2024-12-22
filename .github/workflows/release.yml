@@ -33,7 +33,7 @@ jobs:
           
           git config --global user.name "majidkarimizadeh"
           git config --global user.email "m.karimizadeh@global.leaseweb.com"
-
+          
           # Define the new branch name
           NEW_BRANCH="feature/auto-updates-$(date +%Y%m%d%H%M%S)"
           echo "auto_update_branch=$NEW_BRANCH" >> $GITHUB_ENV
@@ -42,6 +42,7 @@ jobs:
           git checkout -b "$NEW_BRANCH"
 
           go mod tidy
+          echo "asdasdasd" >> asd.txt
 
           if [ "$(git status --porcelain)" ]; then
             # Stage, commit, and push changes
