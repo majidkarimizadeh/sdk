@@ -30,12 +30,20 @@ jobs:
       # Commit changes to go.mod if modified
       - name: Commit and Push Changes
         run: |
-          git config --global user.name "majidkarimizadeh"
-          git config --global user.email "m.karimizadeh@global.leaseweb.com"
+          git config user.name "majidkarimizadeh"
+          git config user.email "m.karimizadeh@global.leaseweb.com"
+
+          # Define the new branch name
+          NEW_BRANCH="feature/auto-updates-$(date +%Y%m%d%H%M%S)"
+
+          # Create a new branch
+          git checkout -b "$NEW_BRANCH"
+
           if [ "$(git status --porcelain)" ]; then
+            # Stage, commit, and push changes
             git add .
-            git commit -m "Update dependencies and set version to $VERSION"
-            git push origin dev
+            git commit -m "Automated update: $(date)"
+            git push origin "$NEW_BRANCH"
           fi
 
       # Create a Pull Request to the main branch
